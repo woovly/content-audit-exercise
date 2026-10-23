@@ -34,6 +34,8 @@ pipeline/provider.py    model client — retries transient failures
 pipeline/score.py       one rule -> one finding
 pipeline/store.py       sqlite
 pipeline/run.py         orchestrator — scores a rule set for one item
+scripts/demo.py         run one audit end to end
+scripts/load_test.py    run several audits against a provider having a bad night
 tests/                  five tests, all passing
 logs/                   production logs from the incident in Part 1
 ```
@@ -41,7 +43,18 @@ logs/                   production logs from the incident in Part 1
 ## Run it
 
     pip install pytest
-    pytest -q          # 5 passed
+
+    pytest -q                      # 5 passed
+    python scripts/demo.py         # one audit, end to end
+    python scripts/load_test.py    # several audits, under load
+
+`demo.py` stops with a message where Part 2 begins — `write_findings` is the
+function you are going to write, so a full run cannot finish until it exists.
+
+The stubbed provider fails a small fraction of calls, the way a real one does.
+`AUDIT_FAILURE_RATE` controls it:
+
+    AUDIT_FAILURE_RATE=0.6 RUNS=10 python scripts/load_test.py
 
 ---
 
@@ -51,7 +64,8 @@ Two nights ago this started failing under load, and we could not reproduce it
 locally. Once it starts, **every run after it fails the same way until the
 process is restarted**.
 
-The logs from that night are in `logs/incident-2026-10-20.log`.
+The logs from that night are in `logs/incident-2026-10-20.log`, and
+`scripts/load_test.py` is roughly how we eventually reproduced it.
 
 **Find it, explain the mechanism, and fix it.**
 

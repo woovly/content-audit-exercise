@@ -17,10 +17,15 @@ thirty seconds.
     pipeline/score.py       one rule -> one finding
     pipeline/store.py       sqlite
     pipeline/run.py         orchestrator, scores a rule set for one item
+    scripts/demo.py         run one audit end to end
+    scripts/load_test.py    run several audits under load
     tests/                  five tests, all passing
     logs/                   production logs from the incident
 
 ## Run it
 
     pip install pytest
-    pytest -q
+
+    pytest -q                      # 5 passed
+    python scripts/demo.py         # one audit, end to end
+    python scripts/load_test.py    # several audits, under load

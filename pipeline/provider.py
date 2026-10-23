@@ -3,6 +3,7 @@
 Wraps the HTTP call to the scoring model and retries transient failures.
 """
 import logging
+import os
 import random
 import time
 
@@ -43,6 +44,11 @@ def call_model(prompt: str, *, timeout: int = TIMEOUT_SECONDS) -> str:
             time.sleep(delay)
 
 
+# How often the stubbed provider throws a transient error. Override with
+# AUDIT_FAILURE_RATE to simulate a bad night at the provider.
+_FAILURE_RATE = float(os.environ.get("AUDIT_FAILURE_RATE", "0.05"))
+
+
 def _post(prompt: str, *, timeout: int) -> str:
     """Stubbed HTTP call. Returns canned JSON; fails like the real thing."""
     if random.random() < _FAILURE_RATE:
@@ -52,7 +58,3 @@ def _post(prompt: str, *, timeout: int) -> str:
         '"evidence": "Logo appears at 0:04 cropped on the right edge.", '
         '"confidence": 0.81}'
     )
-
-
-# Raised to 0.4 by the load test to reproduce the incident.
-_FAILURE_RATE = 0.05
