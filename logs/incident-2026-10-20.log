@@ -1,0 +1,20 @@
+2026-10-20T02:14:03.118Z INFO  run=aud_9f31 item=ig_88213 rules=12 starting
+2026-10-20T02:14:03.904Z WARN  pipeline.provider transient provider error, retrying in 2s: 503 Service Unavailable
+2026-10-20T02:14:03.961Z WARN  pipeline.provider transient provider error, retrying in 4s: 503 Service Unavailable
+2026-10-20T02:14:04.002Z WARN  pipeline.provider transient provider error, retrying in 8s: 503 Service Unavailable
+2026-10-20T02:14:04.051Z ERROR pipeline.provider provider retry budget exhausted: 503 Service Unavailable
+2026-10-20T02:14:04.052Z ERROR pipeline.run run=aud_9f31 rule=R-003 abandoned: provider exhausted
+2026-10-20T02:14:04.058Z ERROR pipeline.provider provider retry budget exhausted: 503 Service Unavailable
+2026-10-20T02:14:04.059Z ERROR pipeline.run run=aud_9f31 rule=R-007 abandoned: provider exhausted
+2026-10-20T02:14:04.061Z ERROR pipeline.provider provider retry budget exhausted: 503 Service Unavailable
+2026-10-20T02:14:04.062Z ERROR pipeline.run run=aud_9f31 rule=R-011 abandoned: provider exhausted
+2026-10-20T02:14:12.330Z INFO  run=aud_9f31 item=ig_88213 complete findings=3 status=failed
+
+2026-10-20T02:14:19.771Z INFO  run=aud_9f42 item=ig_88219 rules=12 starting
+2026-10-20T02:14:19.774Z ERROR pipeline.provider provider retry budget exhausted: 503 Service Unavailable
+2026-10-20T02:14:19.775Z ERROR pipeline.run run=aud_9f42 rule=R-001 abandoned: provider exhausted
+2026-10-20T02:14:19.779Z ERROR pipeline.provider provider retry budget exhausted: 503 Service Unavailable
+2026-10-20T02:14:19.780Z ERROR pipeline.run run=aud_9f42 rule=R-002 abandoned: provider exhausted
+2026-10-20T02:14:19.784Z ERROR pipeline.provider provider retry budget exhausted: 503 Service Unavailable
+2026-10-20T02:14:19.785Z ERROR pipeline.run run=aud_9f42 rule=R-004 abandoned: provider exhausted
+2026-10-20T02:14:19.9xxZ ...  (every subsequent run fails the same way until the process restarts)
